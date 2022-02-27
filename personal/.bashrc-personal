@@ -43,10 +43,7 @@ custom() {
     # sudo chsh $USER -s /bin/zsh
     sudo /usr/local/bin/arcolinux-vbox-share
     VBoxManage setextradata global GUI/SuppressMessages "all"
-    echo 'All your personal configs , cursors , backgrounds... are in place. Now log out to activate them.'
-    ltupd
-    lti db-scifi
-    lta db-scifi    
+    echo 'All your personal configs , cursors , backgrounds... are in place. Now log out to activate them.'   
 }
 #########################################################################################
 #########################################################################################
