@@ -1,6 +1,6 @@
 # Aries BYOI Leftwm desktop
 
-![Aries-Leftwm](https://github.com/PeterDauwe/aries-leftwm/blob/master/aries_leftwm.png)
+![Aries-Leftwm](https://github.com/PeterDauwe/aries-leftwm/blob/master/aries_leftwm.jpg)
 
 
 # Get your code to build your own iso
