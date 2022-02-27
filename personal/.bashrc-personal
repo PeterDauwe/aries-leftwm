@@ -1,0 +1,57 @@
+#
+# ~/.bashrc
+#
+
+#more sensitive data
+[[ -f ~/.bashrc-private ]] && . ~/.bashrc-private
+
+#git clone
+alias gc="git clone"
+
+alias gitpull="find . -maxdepth 3 -name .git -type d | rev | cut -c 6- | rev | xargs -I {} git -C {} pull"
+
+#No messages in virtualbox
+alias vbmessage='VBoxManage setextradata global GUI/SuppressMessages "all"'
+
+gp() {
+    git pull
+    git add -u
+    git add --all .
+    input="update"
+    git commit -m "$input"
+    git push --force -u origin master
+}
+
+myt() {
+    ltupd
+    lti db-scifi
+    lta db-scifi
+}
+
+#########################################################################################
+##### This will copy all your personal settings into place ##############################
+#########################################################################################
+custom() {
+    sudo chmod -R 755 /personal-aries/personal-home/*
+    cp -Rf /personal-aries/personal-home/* ~
+    sudo chmod -R 755 /personal-aries/personal-root/*
+    sudo cp -Rf /personal-aries/personal-root/* /
+    sed -i -e 's/neofetch/sfetch/g' .bashrc
+    sed -i -e 's/! Xft.dpi:   96/ Xft.dpi:   96/g' .Xresources
+    sed -i -e 's/neofetch/sfetch/g' .zshrc
+    # sed -i -e 's/="random"/="Lastbobo"/g' .zshrc
+    # sudo chsh $USER -s /bin/zsh
+    sudo /usr/local/bin/arcolinux-vbox-share
+    VBoxManage setextradata global GUI/SuppressMessages "all"
+    echo 'All your personal configs , cursors , backgrounds... are in place. Now log out to activate them.'
+    ltupd
+    lti db-scifi
+    lta db-scifi    
+}
+#########################################################################################
+#########################################################################################
+
+ 
+alias 1080yt="yt-dlp -f 'bv[height=1080][ext=mp4]+ba[ext=m4a]' -o '%(upload_date)s - %(title)s.%(ext)s'"
+alias 720yt="yt-dlp -f 'bv[height=720][ext=mp4]+ba[ext=m4a]' -o '%(upload_date)s - %(title)s.%(ext)s'"
+alias 480yt="yt-dlp -f 'bv[height=480][ext=mp4]+ba[ext=m4a]' -o '%(upload_date)s - %(title)s.%(ext)s'"
