@@ -14,22 +14,6 @@
 #   DO NOT JUST RUN THIS. EXAMINE AND JUDGE. RUN AT YOUR OWN RISK.
 #
 ##################################################################################################################
-SECONDS=0
-
-sound() {
-  # plays sounds in sequence and waits for them to finish
-  for s in $@; do
-    paplay $s
-  done
-}
-sn1() {
-  sound /usr/share/sounds/freedesktop/stereo/complete.oga
-}
-sn2() {
-  sound /usr/share/sounds/freedesktop/stereo/suspend-error.oga
-}
-
-
 echo
 echo "################################################################## "
 tput setaf 2
@@ -88,8 +72,6 @@ echo
 	echo "or update your system"
 	echo "###################################################################################################"
 	tput sgr0
-	sn2
-	exit 1
 	fi
 
 echo
@@ -253,6 +235,7 @@ echo
 		cat ../archiso/packages-personal-repo.x86_64 | sudo tee -a $buildFolder/archiso/packages.x86_64
 	fi
 
+	echo
 	echo "Changing group for polkit folder"
 	sudo chgrp polkitd $buildFolder/archiso/airootfs/etc/polkit-1/rules.d
 	#is not working so fixing this during calamares installation
@@ -317,17 +300,17 @@ echo
 	sudo sed -i "s/\(^ISO_BUILD=\).*/\1$date_build/" $buildFolder/archiso/airootfs/etc/dev-rel
 
 
-#echo
-#echo "################################################################## "
-#tput setaf 2
-#echo "Phase 6 :"
-#echo "- Cleaning the cache from /var/cache/pacman/pkg/"
-#tput sgr0
-#echo "################################################################## "
-#echo
+echo
+echo "###########################################################"
+tput setaf 2
+echo "Phase 6 :"
+echo "- Cleaning the cache from /var/cache/pacman/pkg/"
+tput sgr0
+echo "###########################################################"
+echo
 
-	#echo "Cleaning the cache from /var/cache/pacman/pkg/"
-	#yes | sudo pacman -Scc
+	echo "Cleaning the cache from /var/cache/pacman/pkg/"
+	yes | sudo pacman -Scc
 
 echo
 echo "################################################################## "
@@ -372,33 +355,18 @@ echo
 	echo "Moving pkglist.x86_64.txt"
 	echo "########################"
 	cp $buildFolder/iso/arch/pkglist.x86_64.txt  $outFolder/$isoLabel".pkglist.txt"
+	
+echo
+echo "##################################################################"
+tput setaf 2
+echo "Phase 9 :"
+echo "- Making sure we start with a clean slate next time"
+tput sgr0
+echo "################################################################## "
+echo
 
-
-if (( $SECONDS > 3600 )) ; then
-    let "hours=SECONDS/3600"
-    let "minutes=(SECONDS%3600)/60"
-    let "seconds=(SECONDS%3600)%60"
-    echo "Completed in $hours hour(s), $minutes minute(s) and $seconds second(s)" 
-elif (( $SECONDS > 60 )) ; then
-    let "minutes=(SECONDS%3600)/60"
-    let "seconds=(SECONDS%3600)%60"
-    echo "Completed in $minutes minute(s) and $seconds second(s)"
-else
-    echo "Completed in $SECONDS seconds"
-fi
-	sn1
-
-#echo
-#echo "##################################################################"
-#tput setaf 2
-#echo "Phase 9 :"
-#echo "- Making sure we start with a clean slate next time"
-#tput sgr0
-#echo "################################################################## "
-#echo
-
-	#echo "Deleting the build folder if one exists - takes some time"
-	#[ -d $buildFolder ] && sudo rm -rf $buildFolder
+	echo "Deleting the build folder if one exists - takes some time"
+	[ -d $buildFolder ] && sudo rm -rf $buildFolder
 
 echo
 echo "##################################################################"
