@@ -618,7 +618,7 @@ arcolinux-zsh-git
 #arcolinux-i3wm-git
 #arcolinux-icewm-git
 #arcolinux-jwm-git
-arcolinux-leftwm-git
+###############arcolinux-leftwm-git  replaced by aries-leftwm-config
 #arcolinux-kodi-git
 #arcolinux-lxqt-git
 #arcolinux-mate-git
@@ -720,10 +720,10 @@ arco-calamares
 #arco-calamares-dev
 #arco-calamares-git
 #arco-calamares-next
-arcolinux-system-installation-git
+###################arcolinux-system-installation-git replaced by aries-system-installation
 #arcolinux-system-installation-dev-git
 #arcolinuxd-config-live-session-git
-arcolinux-welcome-app-git 
+######################################arcolinux-welcome-app-git 
 #arcolinuxd-welcome-app-git
 #arcolinux-welcome-app-dev-git
 #arcolinux-welcome-app-deepin-git
